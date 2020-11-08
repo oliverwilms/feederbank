@@ -4,7 +4,6 @@ Class App.Installer
 XData setup
 {
 <Manifest>
-  <Default Name="SourceDir" Value="/opt/feederbank/src"/>
   <Default Name="Namespace" Value="FEEDERBANK"/>
   <Default Name="app" Value="feederbank" />
 
