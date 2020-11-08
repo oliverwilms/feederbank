@@ -5,14 +5,15 @@ ARG IMAGE=intersystemsdc/irishealth-community:2020.3.0.200.0-zpm
 ARG IMAGE=intersystemsdc/iris-community:2020.3.0.200.0-zpm
 ARG IMAGE=intersystemsdc/iris-community:2020.3.0.221.0-zpm
 ARG IMAGE=intersystemsdc/iris-community:2020.4.0.521.0-zpm
+ARG IMAGE=intersystems/irishealth:2020.1.0.215.0
 FROM $IMAGE
 
 USER root   
         
-WORKDIR /opt/irisapp
-RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
-COPY csp /usr/irissys/csp/feeder
-RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /usr/irissys/csp/feeder
+WORKDIR /opt/feederbank
+RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/feederbank
+COPY csp /usr/irissys/csp/feederbank
+RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /usr/irissys/csp/feederbank
 USER ${ISC_PACKAGE_MGRUSER}
 
 COPY  Installer.cls .
