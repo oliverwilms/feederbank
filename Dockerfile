@@ -11,6 +11,8 @@ USER root
         
 WORKDIR /opt/irisapp
 RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/irisapp
+COPY csp /usr/irissys/csp/feeder
+RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /usr/irissys/csp/feeder
 USER ${ISC_PACKAGE_MGRUSER}
 
 COPY  Installer.cls .
