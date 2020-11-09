@@ -889,11 +889,14 @@ ClassMethod Timeout(pInput As %String = "", pTimeOnly As %String = 1, pAdjust As
 ClassMethod TranslateServer(pServer As %String = "") As %String
 {
 	Set tReturnServer = pServer
-	Set tALB = "internal-ecs-ALB"
-	If $Extract(pServer,1,$Length(tALB)) = tALB Set tReturnServer = tALB
-	Set tCLB = "internal-iris-test-clb"
-	If $Extract(pServer,1,$Length(tCLB)) = tCLB Set tReturnServer = tCLB
 	Quit tReturnServer
+}
+
+ClassMethod UpdateLoadBalancer(pLoadBalancerURL As %String = "") As %Status
+{
+	Set tSC = $$$OK
+	Set ^myFeeder("Config","LoadBalancer") = pLoadBalancerURL
+	Quit tSC
 }
 
 ClassMethod whichIRIS(ByRef pIRIS) As %Status
@@ -905,14 +908,13 @@ ClassMethod whichIRIS(ByRef pIRIS) As %Status
 
 ClassMethod whichLoadBalancer() As %String
 {
-	Quit ""
+	Quit $Get(^myFeeder("Config","LoadBalancer"))
 }
 
 /// For CSPOperation
 ClassMethod whichURL() As %String
 {
-	Quit "/csp/user/cache_status.cxw"
-	//Quit "/restapi/UploadFile/"
+	Quit $Get(^myFeeder("Config","CSPOpURL"))
 }
 
 }
